@@ -6,7 +6,6 @@ class BookImage(models.Model):
     _name = 'book.image'
     _description = 'Book Image'
 
-
     name = fields.Char(string="Name")
     image = fields.Image()
     library_book_id = fields.Many2one(comodel_name='library.book')
