@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="crm_commission_menu" action="crm_commission_action"
+              parent="sale.sale_menu_root"
+                  sequence="30" name="Commissions"/>
+</odoo>

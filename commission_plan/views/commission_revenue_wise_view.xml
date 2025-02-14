@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="revenue_commission_action" model="ir.actions.act_window">
+        <field name="name">Revenue Commissions</field>
+        <field name="res_model">commission.revenue.wise</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="commission_revenue_list_view" model="ir.ui.view">
+        <field name="name">commission.revenue.list</field>
+        <field name="model">commission.revenue.wise</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence"/>
+                <field name="amount_from" widget="monetary"/>
+                <field name="amount_to" widget="monetary"/>
+                <field name="rate" widget="percentage"/>
+                <field name="currency_id" string="Currency"
+                       column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+    <record id="commission_revenue_form_view" model="ir.ui.view">
+        <field name="name">commission.revenue.form</field>
+        <field name="model">commission.revenue.wise</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="sequence" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="amount_from" />
+                            <field name="amount_to"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="rate"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

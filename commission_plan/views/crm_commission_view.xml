@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="crm_commission_action" model="ir.actions.act_window">
+        <field name="name">Commissions</field>
+        <field name="res_model">crm.commission</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="crm_commission_list_view" model="ir.ui.view">
+        <field name="name">crm.commission.list</field>
+        <field name="model">crm.commission</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="commission_type"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+            </list>
+        </field>
+    </record>
+    <record id="crm_commission_form_view" model="ir.ui.view">
+        <field name="name">crm.commission.form</field>
+        <field name="model">crm.commission</field>
+        <field name="arch" type="xml">
+            <form >
+                <header>
+                    <button string="Approve" class="btn-primary"
+                            name="action_approve" type="object"
+                            invisible="state != 'draft'" data-hotkey="w"/>
+                    <button string="Cancel" class="btn-secondary"
+                            name="action_cancel" type="object"
+                            invisible="state != 'draft'" data-hotkey="w"/>
+                    <button string="Mark as done" class="btn-secondary"
+                            name="action_done" type="object"
+                            invisible="state != 'approved'" data-hotkey="w"/>
+                    <button string="Reset to draft" class="btn-secondary"
+                            name="action_draft" type="object"
+                            invisible="state == 'draft'" data-hotkey="d"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,approved,done"/>
+                </header>
+                <sheet >
+                    <div class="oe_title">
+                        <label for="name" string="Commission Plan"/>
+                        <h1>
+                            <field name="name"
+                                   placeholder="i.e. Commissions plan 2025"
+                                   class="d-block"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <label for="commission_type" string="Based on"/>
+                            <div>
+                                <field name="commission_type"
+                                       class="oe_inline"
+                                readonly="state in ['approved','done','cancel']"/>
+                            </div>
+                            <label for="revenue_type" string="Method"
+                                   invisible="commission_type == 'product'"/>
+                            <div>
+                                <field name="revenue_type"
+                                       class="oe_inline"
+                                       invisible="commission_type == 'product'"
+                                readonly="state in ['approved','done','cancel']"/>
+                            </div>
+                            <field name="company_id"
+                                   options="{'no_create': True}"
+                            invisible="1"/>
+                        </group>
+                        <group>
+                            <label for="date_from" string="Effective Period"/>
+                            <div class="d-inline-flex">
+                                <field name="date_from" string="Date"
+                                       widget="daterange"
+                                       options="{'end_date_field': 'date_to'}"
+                                readonly="state in ['approved','done','cancel']"/>
+                                <field name="date_to" invisible="1"/>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Product"
+                              invisible="commission_type == 'revenue'">
+                            <field name="commission_product_ids" readonly="state in ['approved','done','cancel']">
+                                <list editable="bottom">
+                                    <field name="product_id"
+                                           placeholder="All products"/>
+                                    <field name="product_categ_id"
+                                           placeholder="All categories"/>
+                                    <field name="rate_display" widget="percentage"/>
+                                    <field name="max_commission_amount"
+                                           widget="monetary"/>
+                                    <field name="currency_id" string="Currency"
+                                           column_invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Revenue"
+                              invisible="commission_type == 'product'">
+                            <group>
+                                <group>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="amount_from"
+                                           widget="monetary"
+                                    readonly="state in ['approved','done','cancel']"/>
+                                    <field name="amount_to" widget="monetary"
+                                    readonly="state in ['approved','done','cancel']"/>
+                                </group>
+                                <group>
+                                    <div class="d-flex">
+                                        <group>
+                                        <field name="rate_display"
+                                               widget="percentage"
+                                        readonly="state in ['approved','done','cancel']"/>
+                                        <field name="extra_rate_display"
+                                               widget="percentage"
+                                        invisible="revenue_type == 'straight'"
+                                        readonly="state in ['approved','done','cancel']"/>
+                                        </group>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                        <!--                        <page string="Revenue"-->
+                        <!--                              invisible="commission_type == 'product' or revenue_type == 'straight'">-->
+                        <!--                            <field name="revenue_wise_ids">-->
+                        <!--                                <list>-->
+                        <!--                                    <field name="sequence"/>-->
+                        <!--                                    <field name="amount_from"-->
+                        <!--                                           widget="monetary"/>-->
+                        <!--                                    <field name="amount_to" widget="monetary"/>-->
+                        <!--                                    <field name="rate" widget="percentage"/>-->
+                        <!--                                    <field name="currency_id" string="Currency"-->
+                        <!--                                           column_invisible="1"/>-->
+                        <!--                                </list>-->
+                        <!--                            </field>-->
+                        <!--                        </page>-->
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="commission_revenue_sequence_id" model="ir.sequence">
+            <field name="name">Commission Revenue Sequence</field>
+            <field name="code">revenue_sequence_code</field>
+            <field name="prefix">REV</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+        </record>
+    </data>
+</odoo>
