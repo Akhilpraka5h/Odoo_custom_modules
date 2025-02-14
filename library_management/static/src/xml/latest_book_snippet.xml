@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="books_snippet" name="Best Seller">
+        <section class="best_latest_books_snippet">
+           <div class="ref-arrival-content">
+                <p class="ref-section_head ref-centerhead__underline ref-head--primary"
+                   style="color: #0d5272;">Latest Books
+                </p>
+            </div>
+            <div id="latest_book_carousel"/>
+        </section>
+    </template>
+</odoo>

@@ -4,8 +4,10 @@ import base64
 
 
 class WebFormController(Controller):
+    """Controller for retrieve data from the form"""
     @route('/book_donation', type='http', auth='user', website=True)
     def web_book_donation(self):
+        """Render the form to book donation"""
         return request.render('library_management.web_book_donation_template',
                               {'authors': request.env['book.author'].search(
                                   []),
@@ -16,6 +18,7 @@ class WebFormController(Controller):
     @route('/book_donation/submit', type='http', auth='user', website=True,
            methods=['POST'])
     def web_book_donation_form_submit(self, **post):
+        """Retrieve the data filled in the web form and create book"""
         author = request.env['book.author'].sudo().browse(
             int(post.get('author')))
         publisher = request.env['book.publisher'].sudo().browse(

@@ -5,7 +5,7 @@
     'sequence': 1,
     'summary': 'Track Books ',
     'website': 'https://www.odoo.com',
-    'depends': ['mail', 'account', 'base','website'],
+    'depends': ['mail', 'account', 'base', 'website'],
     'data': [
         'data/book_sequence.xml',
         'data/book_email_template.xml',
@@ -27,6 +27,7 @@
         'views/website_book_contributor_template.xml',
         'report/book_borrow_report_template.xml',
         'report/book_borrow_report_view.xml',
+        'views/website_snippet.xml',
         'views/book_image_view.xml',
         'views/library_management_menu.xml',
         'views/website_library_management_menu.xml',
@@ -40,6 +41,11 @@
     'assets': {
         'web.assets_backend': [
             'library_management/static/src/js/action_manager.js',
+        ],
+        'web.assets_frontend': [
+            'library_management/static/src/js/book_dynamic_snippet.js',
+            'library_management/static/src/xml/latest_book_snippet.xml',
+            'library_management/static/src/xml/latest_books_snippet_template.xml',
         ],
     },
     'license': 'LGPL-3',
