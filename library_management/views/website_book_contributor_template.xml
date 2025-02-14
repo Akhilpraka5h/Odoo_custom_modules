@@ -1,0 +1,46 @@
+<odoo>
+    <template id="user_book_contribution" name="My Contributions">
+        <t t-call="website.layout">
+            <div class="container">
+                <h2>My Contributions</h2>
+                <table class="table table-borderless">
+                    <thead class="bg-light border-2 rounded ">
+                        <tr class="fw-bold">
+                            <th>
+                                <strong>Book</strong>
+                            </th>
+                            <th>
+                                <strong>Author</strong>
+                            </th>
+                            <th>
+                                <strong>Description</strong>
+                            </th>
+                            <th>
+                                <strong>Condition</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="request.env['library.book'].sudo().search([('contributor_id', '=', request.env.user.partner_id.id)])"
+                           t-as="book">
+                            <tr>
+                                <td>
+                                    <t t-esc="book.book_title"/>
+                                </td>
+                                <td>
+                                    <t t-esc="book.book_author_id.author_name_id.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="book.description"/>
+                                </td>
+                                <td>
+                                    <t t-esc="book.condition"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

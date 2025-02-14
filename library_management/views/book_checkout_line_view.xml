@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="booK_checkout_line_action" model="ir.actions.act_window">
+        <field name="name">History</field>
+        <field name="res_model">book.checkout.line</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="book_checkout_line_view_form_readonly" model="ir.ui.view">
+        <field name="name">book.checkout.line.form.readonly</field>
+        <field name="model">book.checkout.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="order_id" string="Checkout" readonly="1"/>
+                        <field name="book_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="book_checkout_line_view_form_book" model="ir.ui.view">
+        <field name="name">book.checkout.line.form.book</field>
+        <field name="model">book.checkout.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="order_id" string="Checkout"/>
+                        <field name="partner_id" string="Borrowed By"/>
+                        <field name="user_id" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="book_checkout_line_view_list_readonly" model="ir.ui.view">
+        <field name="name">book.checkout.line.list.readonly</field>
+        <field name="model">book.checkout.line</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="book_id"/>
+                <field name="checkout_date"/>
+                <field name="return_date"/>
+                <field name="book_return_status" widget="label_selection"
+                       options="{'classes':
+                        {'late': 'warning','on_time': 'success'}}"
+                       class="ms-auto" string="Status"/>
+                <field name="each_book_penalty" string='Penalty'
+                       widget="monetary"
+                       options="{'currency_field': 'currency_id'}"
+                       sum="Total"/>
+                <field name="currency_id" optional="hide"/>
+                <field name="user_id"/>
+            </list>
+        </field>
+    </record>
+    <record id="book_checkout_line_view_list" model="ir.ui.view">
+        <field name="name">book.checkout.line</field>
+        <field name="model">book.checkout.line</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="book_id"/>
+                <field name="partner_id"/>
+                <field name="checkout_date"/>
+                <field name="return_date"/>
+                <field name="each_book_penalty" string='Penalty'
+                       widget="monetary"
+                       options="{'currency_field': 'currency_id'}"
+                       sum="Total"/>
+                <field name="currency_id" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="book_checkout_line_library_book_view_list" model="ir.ui.view">
+        <field name="name">book.checkout.line</field>
+        <field name="model">book.checkout.line</field>
+        <field name="arch" type="xml">
+            <list edit="1">
+                <field name="partner_id" string="Borrowers"/>
+                <field name="checkout_date"/>
+                <field name="return_date"/>
+            </list>
+        </field>
+    </record>
+    <record id="book_checkout_line_search_view" model="ir.ui.view">
+        <field name="name">book.checkout.line.search</field>
+        <field name="model">book.checkout.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="0">
+                    <filter name="book_id"
+                            context="{'group_by':'book_id'}"/>
+                    <filter name="order_partner_id"
+                            context="{'group_by':'order_partner_id'}"/>
+                    <filter name="checkout_date"
+                            context="{'group_by':'checkout_date'}"/>
+                    <filter name="return_date"
+                            context="{'group_by':'return_date'}"/>
+                    <filter name="book_genre_ids"
+                            context="{'group_by':'book_genre_ids'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

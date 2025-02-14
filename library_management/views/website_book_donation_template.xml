@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="web_book_donation_template" name="Book Donation">
+        <t t-call="website.layout">
+            <div class="container">
+                <form action="/book_donation/submit" method="post" class="mt-4"
+                      enctype="multipart/form-data">
+                    <div hidden="hidden">
+                        <input type=" hidden" name="csrf_token"
+                               t-att-value="request.csrf_token()"/>
+                    </div>
+                    <div class="row">
+                        <h2>
+                            Enter Book Details Below
+                        </h2>
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <label for="name" class="form-label">Book
+                                    Name:
+                                </label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="name"
+                                       name="name"
+                                       required="required"
+                                       placeholder="Enter Book Name"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="desc" class="form-label">
+                                    Description:
+                                </label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="desc"
+                                       name="desc"
+                                       placeholder="Enter Book Description"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="author" class="form-label">Author:
+                                </label>
+                                <select class="form-control" name="author"
+                                        required="required">
+                                    <option value="">Select Book Author</option>
+                                    <t t-foreach="authors" t-as="author">
+                                        <option t-att-value="author.id">
+                                            <span t-esc="author.author_name_id.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="publisher" class="form-label">
+                                    Publisher:
+                                </label>
+                                <select class="form-control" name="publisher"
+                                        required="required">
+                                    <option value="">Select Book Publisher
+                                    </option>
+                                    <t t-foreach="publishers" t-as="publisher">
+                                        <option t-att-value="publisher.id">
+                                            <span t-esc="publisher.publisher_name_id.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col mt-5">
+                            <div class="d-flex justify-content-center align-items-center mb-2">
+                                <img src="library_management/static/img/6920933.jpg"
+                                     alt="Books" width="260" height="210"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="condition" class="form-label">
+                                    Condition:
+                                </label>
+                                <select id="condition" name="condition"
+                                        class="form-control"
+                                        required="required">
+                                    <option value="">Select Book Condition
+                                    </option>
+                                    <option value="new">New</option>
+                                    <option value="good">Good</option>
+                                    <option value="old">Old</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-7 col-md-8">
+                            <label class="col-md-3 col-sm-4 control-label"
+                                   for="images">Add Book Image
+                            </label>
+                        </div>
+                        <div class="col-lg-7 col-md-8">
+                            <input type="file" name="images" id="images"
+                                   accept="image/*" multiple="multiple"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group mb-3">
+                        <button type="submit" class="btn btn-primary">Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>

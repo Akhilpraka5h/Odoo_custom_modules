@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_recommended_book_form" model="ir.ui.view">
+        <field name="name">recommended.book.form</field>
+        <field name="model">recommended.book</field>
+        <field name="model_id" ref="model_recommended_book"/>
+        <field name="arch" type="xml">
+            <form string="Recommended Books">
+                <field name="recommended_books_ids">
+                    <list editable="bottom">
+                        <field name="select_book" widget="boolean_toggle"/>
+                        <field name="book_title" readonly="1"/>
+                        <field name="book_cover_image" widget="image"
+                               class="oe_avatar" readonly="1"/>
+                    </list>
+                </field>
+                <footer>
+                    <button string="Checkout" name="recommend_checkout_action"
+                            class="btn-primary" type="object"
+                            confirm="Are you sure to Checkout?"/>
+                    <button string="Close" name="recommend_close_action"
+                            class="btn-secondary" type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

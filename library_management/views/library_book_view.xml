@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="library_books_action" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+    <record id="library_books_list" model="ir.ui.view">
+        <field name="name">list</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="book_id"/>
+                <field name="book_title"/>
+                <field name="book_status" widget="label_selection"
+                       options="{'classes':
+                       {'coming_soon': 'warning', 'unavailable': 'danger', 'available': 'success'}}"
+                       class="ms-auto"/>
+            </list>
+        </field>
+    </record>
+    <record id="library_books_kanban" model="ir.ui.view">
+        <field name="name">list</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1" quick_create="false">
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <main class="pe-2">
+                            <div class="mb-1">
+                                <div class="d-flex mb-0 h5">
+                                    <strong>
+                                        <field name="book_title"/>
+                                    </strong>
+                                </div>
+                            </div>
+                            <span>
+                                Price:
+                                <field name="book_price" widget="monetary"
+                                       options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                            </span>
+                            <div>
+                                <field name="book_status"
+                                       widget="label_selection"
+                                       options="{'classes': {'coming_soon': 'warning', 'unavailable': 'danger', 'available': 'success'}}"
+                                       class="ms-auto"/>
+                            </div>
+                        </main>
+                        <aside>
+                            <field name="book_cover_image" widget="image"
+                                   alt="Product"
+                                   options="{'img_class': 'w-100 object-fit-contain'}"
+                                   invisible="not book_cover_image"/>
+                        </aside>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="library_books_form" model="ir.ui.view">
+        <field name="name">list</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="avail_action" type="object"
+                            invisible="book_status not in ['coming_soon', 'unavailable'] "
+                            class="btn-primary">Confirm
+                    </button>
+                    <button name="unavail_action" type="object"
+                            invisible="book_status != 'available'"
+                            class="btn-primary">Remove
+                    </button>
+                    <field name="book_status" widget="statusbar"
+                           statusbar_visible="coming_soon,available,unavailable"/>
+                </header>
+                <sheet>
+                    <div class="button_box" name="button_box">
+                        <button name="action_view_borrowers" type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o">
+                            <field name="borrow_count" widget="statinfo"
+                                   string="Borrowers"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="book_id" readonly="1"/>
+                        </h1>
+                    </div>
+                    <field name="book_cover_image" widget="image"
+                           class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="book_title" string="Book name"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field class="text-break" name="book_title"
+                                       options="{'line_breaks': False}"
+                                       widget="text"
+                                       placeholder="e.g. Rich Dad Poor Dad"/>
+                            </div>
+                        </h1>
+                    </div>
+                    <notebook>
+                        <page string="Details">
+                            <field name="currency_id" invisible="1"/>
+                            <group>
+                                <group>
+                                    <field name="isbn_id"/>
+                                </group>
+                                <group>
+                                    <field name="book_author_id"
+                                           options="{'no_create': True}"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="book_price" widget="monetary"/>
+                                </group>
+                                <group>
+                                    <field name="book_publisher_id"
+                                           options="{'no_create': True}"/>
+                                </group>
+                                <group>
+                                    <field name="book_cost" widget="monetary"/>
+                                </group>
+                                <group>
+                                    <field name="book_publish_date"/>
+                                </group>
+                                <group>
+                                    <field name="book_tag_ids"
+                                           widget="many2many_tags"/>
+                                </group>
+                                <group>
+                                    <field name="book_genre_ids"
+                                           widget="many2many_tags"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Media">
+                            <group string="eCommerce Media">
+                                <field
+                                        colspan="2"
+                                        name="book_image_ids"
+                                        class="o_website_sale_image_list"
+                                        mode="kanban"
+                                        add-label="Add Media"
+                                        nolabel="1"
+                                        widget="x2_many_media_viewer"
+                                        options="{'convert_to_webp': True}"
+                                />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="library_books_search" model="ir.ui.view">
+        <field name="name">Search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search string="Search">
+                <field name="book_title"/>
+                <field name="isbn_id"/>
+                <field name="book_author_id"/>
+                <field name="book_genre_ids"/>
+                <field name="book_tag_ids"/>
+                <group expand="0">
+                    <filter name="book_author_id"
+                            context="{'group_by':'book_author_id'}"/>
+                    <filter name="book_genre_ids"
+                            context="{'group_by':'book_genre_ids'}"/>
+                    <filter name="book_publisher_id"
+                            context="{'group_by':'book_publisher_id'}"/>
+                    <filter name="book_publish_date"
+                            context="{'group_by':'book_publish_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

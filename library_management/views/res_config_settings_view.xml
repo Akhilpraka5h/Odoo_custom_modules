@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="library_settings_form" model="ir.ui.view">
+        <field name="name">Setting</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="15"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Library Management"
+                     string="Library Management" name="res_config_settings">
+                    <block title="Checkout">
+                        <setting string="Borrowing Days"
+                                 help="Maximum borrowing days for books.">
+                            <field name="max_borrow_day"
+                                   class="text-center oe_inline"/>
+                            <span>days</span>
+                        </setting>
+                        <setting string="Reminder Days"
+                                 help="Reminder days before a book is due.">>
+                            <field name="reminder_day"/>
+                        </setting>
+                        <setting string="Penalty"
+                                 help="Penalty charged for each hour a book is overdue.">
+                            <field name="penalty"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+    <record id="library_settings_action" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'res_config_settings'}</field>
+    </record>
+</odoo>

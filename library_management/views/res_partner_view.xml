@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="library_member_action" model="ir.actions.act_window">
+        <field name="name">Members</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('is_company','=',False),
+            ('company_type', '=', 'person')]</field>
+        <field name="context">{'default_company_type' : 'person'}</field>
+    </record>
+    <record id="res_partner_customizations_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml" >
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button"
+                         type="object"
+                         icon="fa-book"
+                         name="action_get_books_record">
+                    <field string="Books" name="book_count" widget="statinfo"/>
+                </button>
+            </div>
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page name='Library' string="Library" groups='library_management.group_librarian_user'>
+                    <group>
+                        <field name="max_borrow_book"/>
+                        <field name="max_late_return"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+<!--    <record id="library_partner_kanban_view" model="ir.ui.view">-->
+<!--        <field name="name">res.partner.kanban.checkout.inherit</field>-->
+<!--        <field name="model">res.partner</field>-->
+<!--        <field name="inherit_id" ref="base.res_partner_kanban_view"/>-->
+<!--        <field name="priority" eval="20"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//footer/div" position="inside">-->
+<!--                <a t-if="record.book_count?.value"-->
+<!--                    class="btn btn-sm btn-link smaller"-->
+<!--                    groups="library_management.group_librarian_user"-->
+<!--                    name="action_get_books_record"-->
+<!--                    role="button"-->
+<!--                    type="object">-->
+<!--                    <i class="fa fa-usd me-1" role="img" aria-label="Books Checkout" title="Books Checkout"/>-->
+<!--                    <field name="book_count"/>-->
+<!--                </a>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+</odoo>

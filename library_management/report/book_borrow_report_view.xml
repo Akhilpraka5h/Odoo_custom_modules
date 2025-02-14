@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_report_book_checkout_line" model="ir.actions.report">
+        <field name="name">PDF History</field>
+        <field name="model">book.checkout.line</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">library_management.book_checkout_line_report_template</field>
+        <field name="report_file">library_management.book_checkout_line_report_template</field>
+        <field name="binding_model_id" ref="model_book_checkout_line"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

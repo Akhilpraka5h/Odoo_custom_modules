@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="book_borrow_report_action" model="ir.actions.act_window">
+        <field name="name"> Print Report</field>
+        <field name="res_model">book.borrow.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <record id="book_borrow_report_form" model="ir.ui.view">
+        <field name="name">Report Print</field>
+        <field name="model">book.borrow.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="partner_id"
+                               options='{"no_open": True, "no_create": True}'
+                               string="Member"/>
+                        <field name="book_id"
+                               options='{"no_open": True, "no_create": True}'
+                               string="Book"/>
+                        <field name="book_genre_ids"
+                               options='{"no_open": True, "no_create": True}'
+                               string="Genres"
+                               widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="checkout_date" string="Checkout Date"/>
+                        <field name="return_date" string="Return Date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="PDF" type="object"
+                            class="btn-primary"
+                            name="action_print_report"/>
+                    <button string="EXCEL" type="object"
+                            class="btn-primary"
+                            name="action_book_borrow_report_excel"/>
+                    <button string="Discard" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_import_lot_serial_form" model="ir.ui.view">
+        <field name="name">import.lot.serial.form</field>
+        <field name="model">import.lot.serial</field>
+        <field name="model_id" ref="model_import_lot_serial"/>
+        <field name="arch" type="xml">
+            <form string="Import Data">
+                <group>
+                    <field name="file_name_name" invisible="1"/>
+                    <field name="file_name" filename="file_name_name"/>
+                </group>
+                <footer>
+                    <button string="Import" name="import_lot_serial_number_action"
+                            class="btn-primary" type="object"/>
+                    <button string="Discard" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

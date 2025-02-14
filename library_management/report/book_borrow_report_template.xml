@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="book_checkout_line_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="text-center mb-5">
+                        <h1>Book Borrow History</h1>
+                    </div>
+                    <t t-if="docs">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="fw-bold">
+                                    <th>
+                                        <strong>Reference ID</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Members</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Books</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Genres</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Checkout Date</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Return Date</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="docs" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="line.order_id.checkout_id"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="line.partner_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="line.book_id.book_title"/>
+                                        </td>
+                                        <td>
+                                            <t t-if="line.book_id.book_genre_ids">
+                                                <t t-set="genre_list"
+                                                   t-value="[genre.genre_name for genre in line.book_id.book_genre_ids]"/>
+                                                <t t-esc="', '.join(genre_list)"/>
+                                            </t>
+                                        </td>
+                                        <td>
+                                            <t t-esc="line.checkout_date"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="line.return_date"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                    <t t-elif="data">
+                        <div class="mb-3">
+                            <t t-foreach="filters.items()" t-as="fil">
+                                <p t-if="fil[1]">
+                                    <strong><t t-esc="fil[0]"/>:
+                                    </strong>
+                                    <t t-esc="fil[1]"/>
+                                </p>
+                            </t>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="fw-bold">
+                                    <th>
+                                        <strong>Reference ID</strong>
+                                    </th>
+                                    <th t-if="not filters.get('Member')">
+                                        <strong>Members</strong>
+                                    </th>
+                                    <th t-if="not filters.get('Book')">
+                                        <strong>Books</strong>
+                                    </th>
+                                    <th t-if="not filters.get('Genre')">
+                                        <strong>Genres</strong>
+                                    </th>
+                                    <th t-if="not filters.get('Checkout')">
+                                        <strong>Checkout Date</strong>
+                                    </th>
+                                    <th t-if="not filters.get('Return')">
+                                        <strong>Return Date</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="data['report']" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="line['checkout_id']"/>
+                                        </td>
+                                        <td t-if="not filters.get('Member')">
+                                            <t t-esc="line['name']"/>
+                                        </td>
+                                        <td t-if="not filters.get('Book')">
+                                            <t t-esc="line['book_title']"/>
+                                        </td>
+                                        <td t-if="not filters.get('Genre')">
+                                            <t t-esc="line['genre_names']"/>
+                                        </td>
+                                        <td t-if="not filters.get('Checkout')">
+                                            <t t-esc="line['checkout_date']"/>
+                                        </td>
+                                        <td t-if="not filters.get('Return')">
+                                            <t t-esc="line['return_date']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

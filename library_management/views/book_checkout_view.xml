@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="book_checkout_action" model="ir.actions.act_window">
+        <field name="name">Checkouts</field>
+        <field name="res_model">book.checkout</field>
+        <field name="view_mode">list,kanban,form</field>
+    </record>
+    <record id="book_checkout_list" model="ir.ui.view">
+        <field name="name">Checkout.list</field>
+        <field name="model">book.checkout</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="checkout_id"/>
+                <field name="partner_name_id"/>
+                <field name="book_status" widget="label_selection"
+                       options="{'classes':
+                       {'overdue': 'warning', 'checked_out': 'info', 'returned': 'success'}}"
+                       class="ms-auto"/>
+                <field name="checkout_date"/>
+                <field name="return_date"/>
+            </list>
+        </field>
+    </record>
+    <record id="book_checkout_kanban" model="ir.ui.view">
+        <field name="name">Checkout.kanban</field>
+        <field name="model">book.checkout</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1" quick_create="false">
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <main class="pe-2">
+                            <div class="mb-1">
+                                <div class="d-flex mb-0 h5">
+                                    <strong>
+                                        <field name="checkout_id"/>
+                                    </strong>
+                                </div>
+                            </div>
+                            <span>
+                                Checkout:
+                                <field name="checkout_date"/>
+                            </span>
+                            <div>
+                                <strong>
+                                    <field name="partner_name_id"/>
+                                </strong>
+                            </div>
+                        </main>
+                        <aside>
+                            <div>
+                                <field name="book_status"
+                                       widget="label_selection"
+                                       options="{'classes': {
+                               'checked_out': 'info', 'overdue': 'warning', 'returned': 'success'
+                               }}" class="ms-auto"/>
+                            </div>
+                        </aside>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="book_checkout_form" model="ir.ui.view">
+        <field name="name">Checkout.form</field>
+        <field name="model">book.checkout</field>
+        <field name="arch" type="xml">
+            <form class="o_sale_order">
+                <header>
+                    <button name="checkout_action" type="object"
+                            invisible="book_status != 'draft'"
+                            class="btn-primary">
+                        Confirm
+                    </button>
+                    <button name="due_action" type="object"
+                            invisible="due_date !='today_date'"
+                            class="btn-primary">
+                        Overdue
+                    </button>
+                    <button name="return_action" type="object"
+                            invisible="book_status in ['draft','returned','cancel']"
+                            class="btn-primary">
+                        Return
+                    </button>
+                    <button name="invoice_action" type="object"
+                            invisible="book_status != 'returned' or invoice_count != 0"
+                            class="btn-primary">
+                        Create Invoice
+                    </button>
+                    <button name="cancel_action" type="object"
+                            invisible="book_status in ['draft','returned','cancel']">
+                        Cancel
+                    </button>
+
+                    <field name="book_status" widget="statusbar"
+                           statusbar_visible="checked_out,overdue,returned,cancel"/>
+                </header>
+                <sheet>
+                    <div class="button_box" name="button_box">
+                        <button name="action_view_checkout_invoice"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                                invisible="invoice_count == 0">
+                            <field name="invoice_count" widget="statinfo"
+                                   string="Invoices"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="checkout_id" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_name_id"/>
+                            <field name="partner_phone"/>
+                        </group>
+                        <group>
+                            <field name="checkout_date"/>
+                            <field name="due_date"/>
+                            <field name="return_date"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="penalty"/>
+                            <field name="user_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Books checkout">
+                            <field name="order_line_ids">
+                                <list editable="bottom">
+                                    <field name="book_id"/>
+                                    <field name="book_author_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

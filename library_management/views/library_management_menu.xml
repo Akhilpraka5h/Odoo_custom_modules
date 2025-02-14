@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="library_root_menu" name="Library" sequence="10">
+        <menuitem id="library_first_level_menu" name="Checkouts" sequence="10">
+            <menuitem id="checkout_menu" action="book_checkout_action"
+                      name="Checkouts"/>
+            <menuitem id="member_menu" action="library_member_action"
+                      sequence="20"/>
+        </menuitem>
+        <menuitem id="books_menu" name="Books" sequence="20">
+            <menuitem id="library_books_menu" action="library_books_action"
+                      name="Books" sequence="10"/>
+            <menuitem id="author_menu" action="book_authors_action"
+                      name="Authors" sequence="20"/>
+            <menuitem id="publisher_menu" action="book_publisher_action"
+                      name="Publishers" sequence="30"/>
+        </menuitem>
+        <menuitem id="reporting_menu" name="Reporting" sequence="40">
+            <menuitem id="book_checkout_history"
+                      action="booK_checkout_line_action"
+                      name="Book Histories" sequence="0"/>
+            <menuitem id="book_borrow_report"
+                      action="book_borrow_report_action"
+                      name="Print Book History Report" sequence="20"/>
+        </menuitem>
+        <menuitem id="library_second_level_menu" name="Configuration"
+                  sequence="50">
+            <menuitem id="library_setting_menu"
+                      action="library_settings_action" sequence="10"/>
+            <menuitem id="genre_menu" action="book_genres_action"
+                      sequence="20"/>
+            <menuitem id="book_tags_menu" action="book_tag_action"
+                      sequence="30"/>
+        </menuitem>
+    </menuitem>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="website_book_donation_menu" model="website.menu">
+        <field name="name">Book Donation</field>
+        <field name="url">/book_donation</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">60</field>
+    </record>
+    <record id="website_book_contributor_menu" model="website.menu">
+        <field name="name">Contributions</field>
+        <field name="url">/your_contributions</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">90</field>
+    </record>
+</odoo>
