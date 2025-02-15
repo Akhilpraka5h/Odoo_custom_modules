@@ -8,6 +8,7 @@ class BookSnippet(Controller):
                 website=True)
     def all_books(self):
         """Function to get all book from library"""
+        print('controller working')
         books = request.env['library.book'].sudo().search_read(
             ['book_title', 'book_cover_image', 'id'],
             order='id asc')

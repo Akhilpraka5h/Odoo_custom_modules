@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-     <template id="books_snippet" name="Best Seller">
+    <template id="books_snippet" name="Latest Books">
         <section class="best_latest_books_snippet">
-           <div class="ref-arrival-content">
-                <p class="ref-section_head ref-centerhead__underline ref-head--primary"
-                   style="color: #0d5272;">Latest Books
+            <div class="ref-arrival-content">
+                <p class="ref-section_head ref-centerhead__underline ref-head--primary">
+                    Latest Books
                 </p>
             </div>
             <div id="latest_book_carousel"/>
         </section>
     </template>
-
     <template id="external_book_snippets" inherit_id="website.snippets"
               name="Latest Books">
-        <xpath expr="//snippets[@id='snippet_content']//t[@t-snippet][last()]">
+        <xpath expr="//t[@id='installed_snippets_hook']" position="after">
             <t t-snippet="library_management.books_snippet"/>
         </xpath>
     </template>

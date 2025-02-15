@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<odoo>
-    <templates id="template" xml:space="preserve">
+<templates id="template" xml:space="preserve">
    <t t-name="library_management.latest_book_snippet_carousel">
        <div id="library_latest_books_carousel" class="container">
            <div id="bookId" class="large-12 columns">
-<!--               <div id="Book_Carousel"-->
-<!--                    class="owl-carousel owl-theme owl-loaded owl-drag">-->
-<!--                   <div class="owl-stage-outer">-->
-<!--                       <div class="owl-stage"-->
-<!--                            style="transform: translate3d(-1188px, 0px, 0px); transition: all 0.25s ease 0s; width: 2376px;">-->
+               <div id="Book_Carousel"
+                    class="owl-carousel owl-theme owl-loaded owl-drag">
+                   <div class="owl-stage-outer">
+                       <div class="owl-stage"
+                            style="transform: translate3d(-1188px, 0px, 0px); transition: all 0.25s ease 0s; width: 2376px;">
 <!--                           <t t-foreach="chunkData" t-as="data">-->
-<!--                               <p>Haii</p>-->
-<!--                           </t>-->
-<!--                       </div>-->
-<!--                   </div>-->
-<!--               </div>-->
+                           <!--                               <p>Haii</p>-->
+                           <!--                           </t>-->
+                       </div>
+                   </div>
+               </div>
            </div>
        </div>
    </t>
     </templates>
-</odoo>

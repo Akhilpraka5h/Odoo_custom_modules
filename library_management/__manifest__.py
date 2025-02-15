@@ -44,8 +44,7 @@
         ],
         'web.assets_frontend': [
             'library_management/static/src/js/book_dynamic_snippet.js',
-            'library_management/static/src/xml/latest_book_snippet.xml',
-            'library_management/static/src/xml/latest_books_snippet_template.xml',
+            '/library_management/static/src/xml/latest_books_snippet_template.xml',
         ],
     },
     'license': 'LGPL-3',

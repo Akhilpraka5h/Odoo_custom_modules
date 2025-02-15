@@ -9,10 +9,10 @@ class WebFormController(Controller):
     def web_book_donation(self):
         """Render the form to book donation"""
         return request.render('library_management.web_book_donation_template',
-                              {'authors': request.env['book.author'].search(
+                              {'authors': request.env['book.author'].sudo().search(
                                   []),
                                   'publishers': request.env[
-                                      'book.publisher'].search(
+                                      'book.publisher'].sudo().search(
                                       [])})
 
     @route('/book_donation/submit', type='http', auth='user', website=True,
@@ -29,7 +29,7 @@ class WebFormController(Controller):
         if file:
             images = request.httprequest.files.getlist('images')
             for image in images:
-                attachment = request.env['ir.attachment'].create({
+                attachment = request.env['ir.attachment'].sudo().create({
                     'name': image.filename,
                     'type': 'binary',
                     'datas': base64.b64encode(image.read()),
