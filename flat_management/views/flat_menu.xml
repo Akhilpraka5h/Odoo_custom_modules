@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="flat_root_menu" name="Flat" sequence="20">
+        <menuitem id="flat_first_level_menu" name="Flat Management" sequence="10">
+            <menuitem id="flat_menu" action="flat_action_view"
+                      name="Flat"/>
+            <menuitem id="flat_management_menu" action="flat_management_action_view"
+                      sequence="20"
+            name="sale"/>
+        </menuitem>
+    </menuitem>
+</odoo>
