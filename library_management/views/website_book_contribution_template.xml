@@ -38,19 +38,19 @@
                         <th class="text-end">Status</th>
                     </tr>
                 </thead>
-                <t t-foreach="fleet" t-as="record">
+                <t t-foreach="books" t-as="record">
                     <tr>
                         <td class='text-left'>
-                            <span t-field="record.name"/>
+                            <span t-field="record.book_title"/>
                         </td>
                         <td class='text-center'>
-                            <span t-field="record.license_plate"/>
+                            <span t-field="record.book_author_id.author_name_id.name"/>
                         </td>
-                        <td class='text-center'>
-                            <span t-field="record.model_id.name"/>
-                        </td>
+<!--                        <td class='text-center'>-->
+<!--                            <span t-field="record.model_id.name"/>-->
+<!--                        </td>-->
                         <td class='text-end'>
-                            <span t-field="record.state_id"/>
+                            <span t-field="record.condition"/>
                         </td>
                     </tr>
                 </t>
