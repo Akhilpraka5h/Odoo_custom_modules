@@ -1,20 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
    <t t-name="library_management.latest_book_snippet_carousel">
-       <div id="library_latest_books_carousel" class="container">
-           <div id="bookId" class="large-12 columns">
-               <div id="Book_Carousel"
-                    class="owl-carousel owl-theme owl-loaded owl-drag">
-                   <div class="owl-stage-outer">
-                       <div class="owl-stage"
-                            style="transform: translate3d(-1188px, 0px, 0px); transition: all 0.25s ease 0s; width: 2376px;">
-<!--                           <t t-foreach="chunkData" t-as="data">-->
-                           <!--                               <p>Haii</p>-->
-                           <!--                           </t>-->
+       <div id="library_latest_books_carousel" class="container carousel slide mb-4"
+            data-bs-ride="carousel" t-att-data-bs-interval="interval">
+           <div class="carousel-inner" role="listbox">
+               <t t-foreach="chunkData" t-as="data"
+                  t-key="data_index">
+                   <div class="carousel-item active">
+                       <div class="row">
+                           <t t-foreach="data" t-as="book"
+                              t-key="vals_index">
+                               <div class="col">
+                                   <div class="card">
+                                       <div class="overflow-hidden rounded">
+                                           <t t-if="book.book_cover_image">
+                                               <img class="card-img-top o_img_product_square o_img_product_cover h-auto"
+                                                    t-attf-src="data:image/jpeg;base64,{{book.book_cover_image}}"/>
+                                           </t>
+                                           <t t-else="">
+                                               <img class="card-img-top o_img_product_square o_img_product_cover h-auto"
+                                                    src="/library_management/static/img/6920933.jpg"/>
+                                           </t>
+                                            </div>
+                                       <div class="card-body">
+
+                                            <h5 class="card-title"
+                                                style="height:3rem;">
+                                                <t t-esc="book.book_title"/>
+                                            </h5>
+                                           <p class="card-text">
+                                                <span class="ref-prdt-offer-price"
+                                                      data-oe-type="monetary"
+                                                      data-oe-expression="vals.list_price">$ <span
+                                                        class="oe_currency_value"
+                                                        t-esc="book.book_price"/>
+                                               </span>
+                                            </p>
+                                           <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                   </div>
+                               </div>
+                           </t>
                        </div>
                    </div>
-               </div>
+               </t>
            </div>
+           <a t-attf-href="#library_latest_books_carousel"
+              class="carousel-control-prev position-md-absolute w-auto"
+              data-bs-slide="prev" role="button" aria-label="Previous"
+              title="Previous">
+            <span class="oi oi-chevron-left ms-md-n4 rounded-pill p-3 bg-700"/>
+               <span class="visually-hidden">Previous</span>
+           </a>
+           <a t-attf-href="#library_latest_books_carousel"
+              class="carousel-control-next position-md-absolute w-auto"
+              data-bs-slide="next" role="button" aria-label="Next" title="Next">
+            <span class="oi oi-chevron-right me-md-n4 rounded-pill p-3 bg-700"/>
+               <span class="visually-hidden">Next</span>
+           </a>
        </div>
    </t>
     </templates>

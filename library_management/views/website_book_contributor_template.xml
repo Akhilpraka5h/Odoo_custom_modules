@@ -1,3 +1,4 @@
+<!--removed-->
 <odoo>
     <template id="user_book_contribution" name="My Contributions">
         <t t-call="website.layout">

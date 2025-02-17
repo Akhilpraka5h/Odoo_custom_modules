@@ -2,10 +2,10 @@
 <odoo>
     <template id="books_snippet" name="Latest Books">
         <section class="best_latest_books_snippet">
-            <div class="ref-arrival-content">
-                <p class="ref-section_head ref-centerhead__underline ref-head--primary">
-                    Latest Books
-                </p>
+            <div class="d-flex justify-content-center align-items-center">
+                <h4>
+                    Trending Books
+                </h4>
             </div>
             <div id="latest_book_carousel"/>
         </section>

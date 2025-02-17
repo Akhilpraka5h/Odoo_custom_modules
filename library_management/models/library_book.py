@@ -50,7 +50,7 @@ class LibraryBooks(models.Model):
     book_publish_date = fields.Date(string='Published Date')
     checkout = fields.Boolean(string='Select', default=False)
     checkout_count = fields.Integer(default=0)
-    borrow_count = fields.Integer(compute='_compute_book_borrow')
+    borrow_count = fields.Integer(compute='_compute_book_borrow', store=True)
     image_attachment_ids = fields.Many2many('ir.attachment',
                                             string='Images')
     condition = fields.Selection(

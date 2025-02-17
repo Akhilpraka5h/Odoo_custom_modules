@@ -24,7 +24,6 @@
         'views/res_partner_view.xml',
         'views/book_checkout_line_view.xml',
         'views/website_book_donation_template.xml',
-        'views/website_book_contributor_template.xml',
         'views/website_book_contribution_template.xml',
         'report/book_borrow_report_template.xml',
         'report/book_borrow_report_view.xml',

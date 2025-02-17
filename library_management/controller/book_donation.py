@@ -59,6 +59,3 @@ class WebFormController(Controller):
                 })
         return request.redirect('/contactus-thank-you')
 
-    @route('/your_contributions', type='http', auth='user', website=True)
-    def web_book_contribution(self):
-        return request.render('library_management.user_book_contribution')
