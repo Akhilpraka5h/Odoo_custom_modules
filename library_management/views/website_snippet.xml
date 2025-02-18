@@ -3,9 +3,9 @@
     <template id="books_snippet" name="Latest Books">
         <section class="best_latest_books_snippet">
             <div class="d-flex justify-content-center align-items-center">
-                <h4>
+                <h3>
                     Trending Books
-                </h4>
+                </h3>
             </div>
             <div id="latest_book_carousel"/>
         </section>
