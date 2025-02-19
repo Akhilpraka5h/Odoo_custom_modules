@@ -27,29 +27,29 @@ var LatestBooks = PublicWidget.Widget.extend({
         const unique_id = uniqueIdGenerator();
         const chunkSize = getChunkSize();
         const all_books = this.books.all_books;
-        const currency = this.books['currency'];
+        const currency = this.books['currency_symbol'];
+        const currencyPosition = this.books['currency_position'];
         const chunkData = _chunk(all_books, chunkSize);
         if (all_books.length !== 0) {
             chunkData[0].is_active = true;
         }
-        refEl.html(renderToElement('library_management.latest_book_snippet_carousel', { chunkData,currency }));
+        refEl.html(renderToElement('library_management.latest_book_snippet_carousel', { chunkData, currency, currencyPosition }));
         const slide = this.$el.find(`#latest_book_carousel`);
         slide.find('.carousel-control-prev').attr('href', `#carousel${unique_id}`);
         slide.find('.carousel-control-next').attr('href', `#carousel${unique_id}`);
         slide.find('#library_latest_books_carousel').attr('id', `carousel${unique_id}`);
 
         window.addEventListener("resize", () => {
-            this.Resize(refEl, all_books, unique_id);
+            this.Resize(refEl, all_books, unique_id, currency, currencyPosition);
         });
     },
-    Resize: function (refEl, all_books, unique_id) {
+    Resize: function (refEl, all_books, unique_id, currency, currencyPosition) {
         const chunkSize = getChunkSize();
-        const currency = this.books['currency'];
         const chunkData = _chunk(all_books, chunkSize);
         if (all_books.length !== 0) {
             chunkData[0].is_active = true;
         }
-        refEl.html(renderToElement('library_management.latest_book_snippet_carousel', { chunkData, currency }));
+        refEl.html(renderToElement('library_management.latest_book_snippet_carousel', { chunkData, currency, currencyPosition }));
         const slide = this.$el.find(`#latest_book_carousel`);
         slide.find('.carousel-control-prev').attr('href', `#carousel${unique_id}`);
         slide.find('.carousel-control-next').attr('href', `#carousel${unique_id}`);
