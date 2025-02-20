@@ -7,15 +7,12 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='state']" position="after">
-                <field name="new_state" widget="statusbar" invisible="state != 'sale'" options="{'clickable':'1'}"
-                readonly="close_selection == True"/>
+                <field name="new_state" widget="statusbar"
+                       invisible="state != 'sale'" options="{'clickable':'1'}"
+                       readonly="close_selection == True"/>
             </xpath>
             <xpath expr="//form/header/button[@name='action_preview_sale_order']"
                    position="after">
-<!--                <button string="Open" type="object" name="action_open"-->
-<!--                        invisible="state not in ['sale','close']"/>-->
-<!--                <button string="Close" type="object" name="action_close"-->
-<!--                        invisible="state not in ['sale','open']"/>-->
             </xpath>
         </field>
     </record>
