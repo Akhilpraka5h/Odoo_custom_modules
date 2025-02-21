@@ -34,7 +34,6 @@
                     <tr class="active">
                         <th class="text-left">Book Name</th>
                         <th class="text-center">Author</th>
-<!--                        <th class="text-center">Model</th>-->
                         <th class="text-end">Status</th>
                     </tr>
                 </thead>
@@ -46,9 +45,6 @@
                         <td class='text-center'>
                             <span t-field="record.book_author_id.author_name_id.name"/>
                         </td>
-<!--                        <td class='text-center'>-->
-<!--                            <span t-field="record.model_id.name"/>-->
-<!--                        </td>-->
                         <td class='text-end'>
                             <span t-field="record.condition"/>
                         </td>
