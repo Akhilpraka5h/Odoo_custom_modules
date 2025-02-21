@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="books_snippet" name="Recent Product">
+        <section class="best_latest_books_snippet">
+            <div class="d-flex justify-content-center align-items-center">
+                <h3>
+                    Recently Viewed
+                </h3>
+            </div>
+            <div id="latest_book_carousel"/>
+        </section>
+    </template>
+    <template id="external_book_snippets" inherit_id="website.snippets"
+              name="Latest Books">
+        <xpath expr="//t[@id='installed_snippets_hook']" position="after">
+            <t t-snippet="recent_view_product.books_snippet"/>
+        </xpath>
+    </template>
+</odoo>
