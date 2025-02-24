@@ -6,7 +6,7 @@ import { renderToElement } from "@web/core/utils/render";
 export function _chunk(array, size) {
     const result = [];
     for (let i = 0; i < array.length; i += size) {
-        result.push(array.slice(i, i + size));
+        result.push(array.slice( i, i + size));
     }
     return result;
 }
@@ -16,45 +16,43 @@ function uniqueIdGenerator() {
 function getChunkSize() {
     return window.innerWidth < 768 ? 1 : 4;
 }
-var LatestBooks = PublicWidget.Widget.extend({
-    selector: '.best_latest_books_snippet',
+var RecentViewProducts = PublicWidget.Widget.extend({
+    selector: '.viewed_products',
     willStart: async function () {
         const data = await rpc('/recent_view_products', {});
-//        this.books = data;
+        this.products = data;
     },
     start: function () {
-//        const refEl = this.$el.find("#latest_book_carousel");
-//        const unique_id = uniqueIdGenerator();
-//        const chunkSize = getChunkSize();
-//        const all_books = this.books.all_books;
-//        const currency = this.books['currency_symbol'];
-//        const currencyPosition = this.books['currency_position'];
-//        const chunkData = _chunk(all_books, chunkSize);
-//        if (all_books.length !== 0) {
-//            chunkData[0].is_active = true;
-//        }
-//        refEl.html(renderToElement('library_management.latest_book_snippet_carousel', { chunkData, currency, currencyPosition }));
-//        const slide = this.$el.find(`#latest_book_carousel`);
-//        slide.find('.carousel-control-prev').attr('href', `#carousel${unique_id}`);
-//        slide.find('.carousel-control-next').attr('href', `#carousel${unique_id}`);
-//        slide.find('#library_latest_books_carousel').attr('id', `carousel${unique_id}`);
-//
-//        window.addEventListener("resize", () => {
-//            this.Resize(refEl, all_books, unique_id, currency, currencyPosition);
-//        });
+        const refEl = this.$el.find("#recent_viewed");
+        const unique_id = uniqueIdGenerator();
+        const chunkSize = getChunkSize();
+        const viewed_product = this.products.viewed_product;
+        const chunkData = _chunk(viewed_product, chunkSize);
+        if (viewed_product.length !== 0) {
+            chunkData[0].is_active = true;
+        }
+        refEl.html(renderToElement('recent_view_product.user_recently_viewed_products', { chunkData }));
+        const slide = this.$el.find(`#recent_viewed`);
+        slide.find('.carousel-control-prev').attr('href', `#carousel${unique_id}`);
+        slide.find('.carousel-control-next').attr('href', `#carousel${unique_id}`);
+        slide.find('#user_viewed_products').attr('id', `carousel${unique_id}`);
+
+        window.addEventListener("resize", () => {
+            this.Resize(refEl, viewed_product, unique_id);
+        });
     },
-//    Resize: function (refEl, all_books, unique_id, currency, currencyPosition) {
-//        const chunkSize = getChunkSize();
-//        const chunkData = _chunk(all_books, chunkSize);
-//        if (all_books.length !== 0) {
-//            chunkData[0].is_active = true;
-//        }
-//        refEl.html(renderToElement('library_management.latest_book_snippet_carousel', { chunkData, currency, currencyPosition }));
-//        const slide = this.$el.find(`#latest_book_carousel`);
-//        slide.find('.carousel-control-prev').attr('href', `#carousel${unique_id}`);
-//        slide.find('.carousel-control-next').attr('href', `#carousel${unique_id}`);
-//        slide.find('#library_latest_books_carousel').attr('id', `carousel${unique_id}`);
-//    }
+    Resize: function (refEl, viewed_product, unique_id) {
+        const chunkSize = getChunkSize();
+        const chunkData = _chunk(viewed_product, chunkSize);
+        if (viewed_product.length !== 0) {
+            chunkData[0].is_active = true;
+        }
+        refEl.html(renderToElement('recent_view_product.user_recently_viewed_products', { chunkData}));
+        const slide = this.$el.find(`#recent_viewed`);
+        slide.find('.carousel-control-prev').attr('href', `#carousel${unique_id}`);
+        slide.find('.carousel-control-next').attr('href', `#carousel${unique_id}`);
+        slide.find('#user_viewed_products').attr('id', `carousel${unique_id}`);
+    }
 });
-PublicWidget.registry.book_wise_snippet = LatestBooks;
-export default LatestBooks;
+PublicWidget.registry.book_wise_snippet = RecentViewProducts;
+export default RecentViewProducts;

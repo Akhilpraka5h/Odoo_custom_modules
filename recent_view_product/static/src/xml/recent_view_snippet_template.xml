@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
-   <t t-name="library_management.latest_book_snippet_carousel">
-       <div id="library_latest_books_carousel"
+   <t t-name="recent_view_product.user_recently_viewed_products">
+       <div id="user_viewed_products"
             class="container carousel slide mb-4"
             data-bs-ride="carousel" t-att-data-bs-interval="interval">
            <div class="carousel-inner" role="listbox">
@@ -9,40 +9,25 @@
                   t-key="data_index">
                    <div t-att-class="data.is_active ? 'carousel-item active' : 'carousel-item'">
                        <div class="row">
-                           <t t-foreach="data" t-as="book"
+                           <t t-foreach="data" t-as="product"
                               t-key="vals_index">
                                <div class="col">
                                    <div class="card border-0">
                                        <a class="o_carousel_product_img_link o_dynamic_product_hovered stretched-link"
                                           href="#">
                                          <div class="overflow-hidden rounded">
-                                           <t t-if="book.book_cover_image">
+                                           <t t-if="product.image_1920">
                                                <img class="card-img-top o_img_product_square o_img_product_cover h-auto"
-                                                    t-attf-src="data:image/jpeg;base64,{{book.book_cover_image}}"/>
+                                                    t-attf-src="data:image/jpeg;base64,{{product.image_1920}}"/>
                                            </t>
                                              <t t-else="">
                                                <img class="card-img-top o_img_product_square o_img_product_cover h-auto"
-                                                    src="/library_management/static/img/6920933.jpg"/>
+                                                    src="/recent_view_product/static/src/img/71z_2202_w012_n001_39b_p12_39.jpg"/>
                                            </t>
                                        </div>
                                        </a>
                                        <div class="card-body d-flex flex-wrap flex-column justify-content-between h-100 p-3">
-                                           <div class="h6 card-title"><t t-esc="book.book_title"/></div>
-                                           <p class="mt-2 fw-bold">
-                                            <t t-if="currencyPosition == 'before'">
-                                                <span t-esc="currency"
-                                                      class="me-1"/>
-                                                <span class="oe_currency_value"
-                                                      t-esc="book.converted_price"/>
-                                            </t>
-                                               <t t-else="">
-                                                <span class="oe_currency_value"
-                                                      t-esc="book.converted_price"/>
-                                                   <span t-esc="currency"
-                                                         class="ms-1"/>
-                                            </t>
-                                        </p>
-                                           <!--                                           <a href="#" class="btn btn-primary">Checkout</a>-->
+                                           <div class="h6 card-title"><t t-esc="product.name"/></div>
                                         </div>
                                    </div>
                                </div>
@@ -51,18 +36,18 @@
                    </div>
                </t>
            </div>
-           <a t-attf-href="#library_latest_books_carousel"
+           <a t-attf-href="#user_viewed_products"
               class="carousel-control-prev position-md-absolute w-auto"
               data-bs-slide="prev" role="button" aria-label="Previous"
               title="Previous">
                 <span class="oi oi-chevron-left ms-md-n4 rounded-pill p-3 bg-700"/>
-                <span class="visually-hidden">Previous</span>
+               <span class="visually-hidden">Previous</span>
            </a>
-           <a t-attf-href="#library_latest_books_carousel"
+           <a t-attf-href="#user_viewed_products"
               class="carousel-control-next position-md-absolute w-auto"
               data-bs-slide="next" role="button" aria-label="Next" title="Next">
                 <span class="oi oi-chevron-right me-md-n4 rounded-pill p-3 bg-700"/>
-                <span class="visually-hidden">Next</span>
+               <span class="visually-hidden">Next</span>
            </a>
        </div>
    </t>
