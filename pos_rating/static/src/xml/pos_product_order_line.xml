@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pos_rating.Orderline"
+       t-inherit="point_of_sale.Orderline" t-inherit-mode="extension"
+       owl="1">
+        <xpath expr="//div[hasclass('internal-note-container')]" position="before">
+            <t t-call="pos_rating.POSRating">
+                <t t-set="rating"
+                   t-value="line.rating"/>
+            </t>
+        </xpath>
+    </t>
+</templates>

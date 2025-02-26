@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pos_rating.POSRating">
+        <t t-if="rating == 5">
+                <span>⭐⭐⭐⭐⭐</span>
+            </t>
+            <t t-elif="rating == 4">
+                <span>⭐⭐⭐⭐★</span>
+            </t>
+            <t t-elif="rating == 3">
+                <span>⭐⭐⭐★★</span>
+            </t>
+            <t t-elif="rating == 2">
+                <span>⭐⭐★★★</span>
+            </t>
+            <t t-elif="rating == 1">
+                <span>⭐★★★★</span>
+            </t>
+            <t t-else="">
+                <span> </span>
+            </t>
+    </t>
+
+</templates>

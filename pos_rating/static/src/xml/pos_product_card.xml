@@ -5,7 +5,10 @@
        owl="1">
         <xpath expr="//div[hasclass('product-information-tag')]"
                position="before">
-               <span><t t-esc="props.product.rating"/>★</span>
+            <t t-call="pos_rating.POSRating">
+                <t t-set="rating"
+                   t-value="props.product.rating"/>
+            </t>
         </xpath>
     </t>
 </templates>

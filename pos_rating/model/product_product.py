@@ -6,6 +6,7 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     rating = fields.Selection([
+        ('0', '0'),
         ('1', '1'),
         ('2', '2'),
         ('3', '3'),
@@ -13,7 +14,7 @@ class ProductProduct(models.Model):
         ('5', '5')
     ],
         string='Rating',
-        default='1',
+        default='0',
         required=1)
 
     @api.model
