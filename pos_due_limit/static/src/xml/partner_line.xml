@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pos_due_limit.PartnerLine"
+       t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension"
+       owl="1">
+        <xpath expr="//td[hasclass('partner-line-email')]"
+               position="after">
+            <td class="partner-line-credit_limit">
+                    <div t-if="props.partner.credit_limit" class="d-flex">
+                        <h5>Credit: </h5>
+                        <t t-esc="props.partner.credit_balance"/>
+                    </div>
+                </td>
+        </xpath>
+    </t>
+</templates>
