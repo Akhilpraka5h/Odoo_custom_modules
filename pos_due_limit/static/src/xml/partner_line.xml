@@ -6,10 +6,18 @@
         <xpath expr="//td[hasclass('partner-line-email')]"
                position="after">
             <td class="partner-line-credit_limit">
-                    <div t-if="props.partner.credit_limit" class="d-flex">
+                <t t-if="props.partner.credit_limit">
+                    <div class="d-flex">
                         <h5>Credit: </h5>
-                        <t t-esc="props.partner.credit_balance"/>
+                        <p><t t-esc="props.partner.credit_balance"/></p>
                     </div>
+                </t>
+                <t t-else="">
+                    <div class="d-flex">
+                        <h5>Credit: </h5>
+                        <p>0.0</p>
+                    </div>
+                </t>
                 </td>
         </xpath>
     </t>
