@@ -11,6 +11,7 @@
     'data': [
         'data/payment_provider_data.xml',
         'views/payment_provider_views.xml',
+        'views/payment_payu_templates.xml',
     ],
     'assets': {
         'web.assets_frontend': [

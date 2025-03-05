@@ -1,11 +1,10 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# -*- coding: utf-8 -*-
 
 import hashlib
 import hmac
 import logging
 import pprint
 import json
-
 import requests
 
 from odoo import _, fields, models
@@ -30,11 +29,38 @@ class PaymentProvider(models.Model):
         required_if_provider='payu',
         groups='base.group_system',
     )
-    payu_api_url = fields.Char(
-        string="PayU Api URL",
-        required_if_provider='payu',
-        groups='base.group_system',
-    )
+
+    def _payu_make_request(self, endpoint, data=None, method='POST'):
+        """ Make a request at Payu endpoint."""
+
+        self.ensure_one()
+        url = f'https://test.payu.in/_payment/{endpoint}'
+        print('haii')
+
+        headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+        }
+        try:
+            response = requests.request(method, url, json=data, headers=headers, timeout=10)
+            print('response')
+            try:
+                response.raise_for_status()
+            except requests.exceptions.HTTPError:
+                _logger.exception(
+                    "Invalid API request at %s with data:\n%s", url, pprint.pformat(data)
+                )
+                raise ValidationError(
+                    "Mollie: " + _(
+                        "The communication with the API failed. Mollie gave us the following "
+                        "information: %s", response.json().get('detail', '')
+                    ))
+        except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
+            _logger.exception("Unable to reach endpoint at %s", url)
+            raise ValidationError(
+                "Mollie: " + _("Could not establish the connection to the API.")
+            )
+        return response.json()
 
     def _get_default_payment_method_codes(self):
         """ Override of `payment` to return the default payment method codes. """
@@ -50,19 +76,3 @@ class PaymentProvider(models.Model):
             'amex',
             'discover',
         }
-
-    def _paypal_get_inline_form_values(self, currency=None):
-        """ Return a serialized JSON of the required values to render the inline form.
-
-        Note: `self.ensure_one()`
-
-        :param res.currency currency: The transaction currency.
-        :return: The JSON serial of the required values to render the inline form.
-        :rtype: str
-        """
-        inline_form_values = {
-            'provider_id': self.id,
-            'merchant_key': self.payu_merchant_key,
-            'currency_code': currency and currency.name,
-        }
-        return json.dumps(inline_form_values)

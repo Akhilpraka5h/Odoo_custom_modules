@@ -11,8 +11,6 @@
                            required="code == 'payu' and state != 'disabled'"/>
                     <field name="payu_salt"
                            required="code == 'payu' and state != 'disabled'"/>
-                    <field name="payu_api_url"
-                           required="code == 'payu' and state != 'disabled'"/>
                 </group>
             </group>
         </field>

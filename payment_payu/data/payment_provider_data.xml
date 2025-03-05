@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
-
     <record id="payment_provider_payu" model="payment.provider">
         <field name="name">PayU</field>
         <field name="code">payu</field>
@@ -10,6 +9,6 @@
                          ref('payment.payment_method_card'),
                      ])]"
         />
+        <field name="redirect_form_view_id" ref="redirect_form"/>
     </record>
-
 </odoo>
