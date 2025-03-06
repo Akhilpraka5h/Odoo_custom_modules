@@ -5,12 +5,13 @@
         <field name="model">payment.provider</field>
         <field name="inherit_id" ref="payment.payment_provider_form"/>
         <field name="arch" type="xml">
-            <group name="provider_credentials" position='inside'>
+            <group name="provider_credentials" position="inside">
                 <group invisible="code != 'payu'">
-                    <field name="payu_merchant_key"
+                    <field name="payu_api_key" string="API Key"
                            required="code == 'payu' and state != 'disabled'"/>
                     <field name="payu_salt"
-                           required="code == 'payu' and state != 'disabled'"/>
+                           required="code == 'payu' and state != 'disabled'"
+                           password="True"/>
                 </group>
             </group>
         </field>
