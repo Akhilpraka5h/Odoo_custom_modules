@@ -5,7 +5,8 @@
         <form t-att-action="api_url" method="post">
             <t t-foreach="url_params" t-as="param">
                 <t t-log="param"/>
-                <input type="hidden" t-att-name="param" t-att-value="url_params[param]" />
+                <input type="hidden" t-att-name="param"
+                       t-att-value="url_params[param]"/>
             </t>
         </form>
     </template>

@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-
 {
     'name': 'Payment Provider: payU',
     'version': '1.0',
     'category': 'Accounting/Payment Providers',
-    'summary': "PayU is a global payment service provider offering online payment solutions in emerging markets",
+    'summary': "PayU is a global payment service.",
     'description': " ",
     'website': 'https://payu.in',
     'depends': ['payment'],
