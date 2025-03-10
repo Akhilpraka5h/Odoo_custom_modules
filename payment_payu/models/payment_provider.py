@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import requests
-from odoo.exceptions import ValidationError
-# from werkzeug import urls
-
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class PaymentProvider(models.Model):
@@ -29,28 +25,3 @@ class PaymentProvider(models.Model):
         if self.code != 'payu':
             return default_codes
         return {'card', 'visa', 'mastercard'}
-
-    # def _payu_make_request(self, endpoint, data=None, method='POST'):
-    #     self.ensure_one()
-    #     print('haii')
-    #     headers = {"Accept": "application/json",
-    #                "Content-Type": "application/x-www-form-urlencoded"}
-    #     url = "https://test.payu.in/_payment"
-    #     try:
-    #         response = requests.request("POST", url, data=data, headers=headers,
-    #                                     timeout=10)
-    #         try:
-    #             response.raise_for_status()
-    #         except requests.exceptions.HTTPError:
-    #             raise ValidationError(
-    #                 "Mollie: " + _(
-    #                     "The communication with the API failed. Mollie gave us the following "
-    #                     "information: %s", response.json().get('detail', '')
-    #                 ))
-    #     except (
-    #             requests.exceptions.ConnectionError,
-    #             requests.exceptions.Timeout):
-    #         raise ValidationError(
-    #             "Mollie: " + _("Could not establish the connection to the API.")
-    #         )
-    #     return response.json()
