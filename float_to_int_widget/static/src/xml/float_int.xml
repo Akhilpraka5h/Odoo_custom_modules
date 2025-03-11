@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template xml:space="preserve">
+    <t t-name="float_to_int_widget.FloatIntWidget">
+        <input type="number" class="o_input flex-grow-1 flex-shrink-1"
+               t-ref="inputfloatint"/>
+    </t>
+</template>
