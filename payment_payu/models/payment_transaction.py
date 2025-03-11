@@ -28,7 +28,7 @@ class PaymentTransaction(models.Model):
     def _payu_prepare_payment_request_payload(self):
         # Payment gateways work in https for ensuring security.
         # So using NGROK by replacing the localhost with url. Check NGROK for more INFO
-        base_url = "https://68da-103-139-64-225.ngrok-free.app"
+        base_url = "https://fb39-103-139-64-225.ngrok-free.app"
         redirect_url = urls.url_join(base_url, PayuController._return_url)
         key = self.provider_id.payu_api_key
         txnid = (f'{self.reference}{fields.datetime.now()}').replace(' ', '_')
