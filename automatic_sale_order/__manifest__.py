@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 {
     'name': 'Automatic Sale Order',
     'version': '1.0',
+    'category': 'Custom',
     'summary': 'Automated Sale order with button click',
     'website': 'www.odoo.com',
     'depends': ['sale'],

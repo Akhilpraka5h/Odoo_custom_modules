@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 {
     'name': 'Data Import',
     'version': '1.0',
+    'category': 'Custom',
     'summary': 'Import Data from excel',
     'website': 'www.odoo.com',
     'depends': ['stock'],

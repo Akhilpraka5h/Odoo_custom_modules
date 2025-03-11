@@ -1,6 +1,7 @@
 {
     'name': 'Flat Management',
     'version': '1.0',
+    'category': 'Custom',
     'summary': 'Flat management',
     'website': 'www.odoo.com',
     'data': [

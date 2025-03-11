@@ -1,6 +1,7 @@
 {
     'name': 'Add To Cart',
     'version': '1.0',
+    'category': 'Custom',
     'summary': 'Cart',
     'website': 'www.odoo.com',
     'depends': ['base', 'website', 'website_sale'],

@@ -1,6 +1,7 @@
 {
     'name': 'POS Product Rating',
     'version': '18.0.1.0.0',
+    'category': 'Custom',
     'summary': 'Rating the product Quality',
     'website': 'www.odoo.com',
     'depends': ['point_of_sale'],

@@ -1,6 +1,7 @@
 {
     'name': 'Sale Order Task',
     'version': '1.0',
+    'category': 'Custom',
     'summary': 'Add selection to sale order',
     'website': 'www.odoo.com',
     'depends': ['sale', 'stock'],

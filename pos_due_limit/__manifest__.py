@@ -1,6 +1,7 @@
 {
     'name': 'POS Due Limit',
     'version': '18.0.1.0.0',
+    'category': 'Custom',
     'summary': 'Due Limit for Customers',
     'website': 'www.odoo.com',
     'depends': ['account', 'point_of_sale'],

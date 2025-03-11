@@ -9,7 +9,7 @@
                     <group>
                         <field name="name"/>
                         <field name="description"/>
-                        <field name="amount"/>
+                        <field name="amount" widget="float_int_widget"/>
                     </group>
                 </sheet>
             </form>

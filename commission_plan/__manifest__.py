@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 {
     'name': 'Commission Plan',
     'version': '1.0',
+    'category': 'Custom',
     'summary': 'Commission plan for salesperson',
     'website': 'www.odoo.com',
     'depends': ['sale', 'mail'],
