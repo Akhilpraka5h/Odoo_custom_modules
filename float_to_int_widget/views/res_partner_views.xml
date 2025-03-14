@@ -8,7 +8,7 @@
             <xpath expr="//page[@name='internal_notes']" position="after">
                 <page name='Widget' string="Float To Int">
                     <group>
-                        <field name="round_value" widget="float_int_widget" options="{'round':'up'}"/>
+                        <field name="round_value" widget="float_int_widget" options='{"rounding": "up"}'/>
                     </group>
                 </page>
             </xpath>
