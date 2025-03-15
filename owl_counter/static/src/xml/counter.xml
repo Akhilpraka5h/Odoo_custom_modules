@@ -14,8 +14,6 @@
                             t-on-click="decrement">Decrement</button>
                 </div>
                 <div>
-                    <button class="btn btn-primary"
-                            t-on-click="reset">Reset</button>
                     <Reset count_reset="()=>this.reset()"/>
                 </div>
             </div>
