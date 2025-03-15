@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="counter_menu" name="Counter" sequence="20">
+        <menuitem id="first_level_menu" name="Counter" sequence="10">
+<!--            <menuitem id="counter_menu" action="counter_action_view"-->
+<!--                      name="Counter"/>-->
+        </menuitem>
+    </menuitem>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+    <t t-name="owl_counter.counter">
+        <div class="container bg-success">
+            <div class=" bg-success-subtle">
+                <span>Counter: <t t-esc="state.value"/></span>
+            </div>
+            <div>
+                <div>
+                    <button class="btn"
+                            t-on-click="increment">Increment</button>
+                    <button class="btn"
+                            t-on-click="decrement">Decrement</button>
+                </div>
+                <div>
+                    <button class="btn btn-primary"
+                            t-on-click="reset">Reset</button>
+                    <Reset count_reset="()=>this.reset()"/>
+                </div>
+            </div>
+
+        </div>
+    </t>
+    <t t-name="owl_counter.reset">
+        <button class="btn btn-primary"
+                t-on-click="props.count_reset">Reset</button>
+    </t>
+</templates>

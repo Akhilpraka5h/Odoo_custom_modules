@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--	Action to show the Dashboard-->
+	<record id="counter_action" model="ir.actions.client">
+    	<field name="name">Counter Dashboard</field>
+    	<field name="tag">owl_counter.counter</field>
+	</record>
+	<!--	Menu Item to show the dashboard menu in the module-->
+	<menuitem name="Counter" id="counter_menu"
+          	sequence="1" action="counter_action"/>
+</odoo>
