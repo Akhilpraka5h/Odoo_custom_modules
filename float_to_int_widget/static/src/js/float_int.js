@@ -17,6 +17,7 @@ export class FloatInt extends Component {
     super.setup();
     this.input = useRef("inputfloatint");
     console.log(this.input)
+    console.log(this.props)
     useInputField({
       getValue: () => this.props.record.data[this.props.name] || "",
       refName: "inputfloatint",
@@ -47,8 +48,10 @@ FloatInt.supportedOptions= [
             ],
         },
     ],
-FloatInt.extractProps=({options})=>({
-rounding:options.round})
+FloatInt.extractProps = ({ options }) => {
+    console.log("Widget options:", options);
+    return { rounding: options.rounding };
+};
 FloatInt.component = FloatInt;
 FloatInt.supportedTypes = ["float"];
 
